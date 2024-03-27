@@ -31,10 +31,11 @@ export default function Login() {
 
   if (isDataFetched && typeof window !== 'undefined' && !error) {
     localStorage?.setItem('token', data?.token)
-    setTimeout(() => {
-      router.push('/admin/dashboard');
-    }, 800);
+    localStorage?.setItem('loggedinUser', JSON.stringify(data?.loggedinUser))
   }
+  data && setTimeout(() => {
+    router.push('/profile');
+  }, 800);
 
   return (
     <>

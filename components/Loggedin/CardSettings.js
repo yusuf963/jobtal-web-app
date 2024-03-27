@@ -1,8 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useFetch from "service/apiClient";
+import apiEndpoints from 'config/api-endpoints';
 
-// components
 
 export default function CardSettings() {
+  const { data, loading, error, putData, getData } = useFetch();
+  const [userFormData, setUserFormData] = useState({});
+  const [user, setUser] = useState({});
+  const [isDataFetched, setIsDataFetched] = useState(false);
+
+
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    setUserFormData({
+      ...userFormData,
+      [name]: value
+    });
+  }
+
+
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('loggedinUser') === 'undefined' || localStorage.getItem('loggedinUser') === 'null') return
+      setUser(JSON.parse(localStorage.getItem('loggedinUser')))
+    }
+  }, [])
+
+  const handleUserDetailsUpdate = () => {
+    putData(apiEndpoints.userCrudBaseApiUrl + user._id, userFormData);
+    setIsDataFetched(true)
+  }
+
+  if (isDataFetched && typeof window !== 'undefined' && !error) {
+    localStorage?.setItem('loggedinUser', JSON.stringify(data))
+  }
+
+  const renderHrefAndButtonText = user?.role === 'siteAdmin' ? {
+    href: '/courses',
+    buttonText: 'Create course'
+  } : user?.role === 'jobAdmin' ?
+    {
+      href: '/courses',
+      buttonText: 'Create Job'
+    } : {
+      href: '/profile',
+      buttonText: 'Search Job'
+    }
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -13,7 +61,9 @@ export default function CardSettings() {
               className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
             >
-              Settings
+              <a href={renderHrefAndButtonText.href}>
+                {renderHrefAndButtonText.buttonText}
+              </a>
             </button>
           </div>
         </div>
@@ -32,9 +82,11 @@ export default function CardSettings() {
                     Username
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="userName"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="lucky.jesse"
+                    defaultValue={user.username}
                   />
                 </div>
               </div>
@@ -48,8 +100,10 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    onChange={handleInputChange}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="jesse@example.com"
+                    defaultValue={user.email}
                   />
                 </div>
               </div>
@@ -62,9 +116,11 @@ export default function CardSettings() {
                     First Name
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="firstName"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Lucky"
+                    defaultValue={user.firstName}
                   />
                 </div>
               </div>
@@ -77,9 +133,11 @@ export default function CardSettings() {
                     Last Name
                   </label>
                   <input
+                    onChange={handleInputChange}
                     type="text"
+                    name="lastName"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Jesse"
+                    defaultValue={user.lastName}
                   />
                 </div>
               </div>
@@ -100,9 +158,11 @@ export default function CardSettings() {
                     Address
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="street"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                    defaultValue={user?.address?.street}
                   />
                 </div>
               </div>
@@ -115,9 +175,11 @@ export default function CardSettings() {
                     City
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="city"
                     type="email"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="New York"
+                    defaultValue={user?.address?.city}
                   />
                 </div>
               </div>
@@ -130,9 +192,11 @@ export default function CardSettings() {
                     Country
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="country"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="United States"
+                    defaultValue={user?.address?.country}
                   />
                 </div>
               </div>
@@ -145,9 +209,11 @@ export default function CardSettings() {
                     Postal Code
                   </label>
                   <input
+                    onChange={handleInputChange}
+                    name="postCode"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Postal Code"
+                    defaultValue={user?.address?.postCode}
                   />
                 </div>
               </div>
@@ -161,21 +227,24 @@ export default function CardSettings() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-12/12 px-4">
                 <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    About me
-                  </label>
                   <textarea
+                    onChange={handleInputChange}
+                    name="bio"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     rows="4"
-                    defaultValue="A beautiful UI Kit and Admin for NextJS & Tailwind CSS"
+                    defaultValue={user.bio}
                   ></textarea>
                 </div>
               </div>
             </div>
+            <button
+              className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              type="button"
+              onClick={handleUserDetailsUpdate}
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>

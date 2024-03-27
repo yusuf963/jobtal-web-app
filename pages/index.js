@@ -38,8 +38,7 @@ export default function Index() {
               </p>
               <div className="mt-12">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
-                  target="_blank"
+                  href="/jobs"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
                   {localeData.cta_search_job_button_text}
@@ -47,7 +46,6 @@ export default function Index() {
                 <a
                   href="/auth/register"
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
-                  target="_blank"
                 >
                   {localeData.cta_register_button_text}
                 </a>
@@ -106,12 +104,6 @@ export default function Index() {
                   <h4 className="text-xl font-bold text-white">
                     {localeData.great_for_your_awesome_career}
                   </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    Putting together a page has never been easier than matching
-                    together pre-made components. From landing pages
-                    presentation to login areas, you can easily customise and
-                    built your pages.
-                  </p>
                 </blockquote>
               </div>
             </div>
@@ -177,7 +169,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="container mx-auto overflow-hidden pb-20">
+        {/* <div className="container mx-auto overflow-hidden pb-20">
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
               <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
@@ -415,7 +407,7 @@ export default function Index() {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="container mx-auto px-4 pb-32 pt-48">
           <div className="items-center flex flex-wrap">
@@ -508,14 +500,14 @@ export default function Index() {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Login Page
+                    Meet Karim
                   </h5>
                   <Link href="/auth/login">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/login.jpg"
+                        src="https://img.freepik.com/free-vector/hacker-operating-laptop-cartoon-icon-illustration-technology-icon-concept-isolated-flat-cartoon-style_138676-2387.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1711411200&semt=ais"
                       />
                     </div>
                   </Link>
@@ -523,14 +515,14 @@ export default function Index() {
 
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Profile Page
+                    Meet Sara
                   </h5>
                   <Link href="/profile">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/profile.jpg"
+                        src="https://static.vecteezy.com/system/resources/previews/016/699/900/original/travelling-male-student-flat-concept-illustration-editable-2d-cartoon-characters-on-white-for-web-design-international-universities-creative-idea-for-website-mobile-presentation-vector.jpg"
                       />
                     </div>
                   </Link>
@@ -538,14 +530,14 @@ export default function Index() {
 
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Landing Page
+                    Meet Mohammad
                   </h5>
                   <Link href="/landing">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/landing.jpg"
+                        src="https://img.freepik.com/premium-vector/cartoon-people-character-design-young-student-holding-books-with-thumb-up-having-good-idea-ideal-both-print-web-design_311865-8535.jpg"
                       />
                     </div>
                   </Link>
@@ -570,7 +562,7 @@ export default function Index() {
                 {localeData.aim_text}
               </p>
               <a
-                href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
+                href="/"
                 target="_blank"
                 className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
               >
@@ -579,7 +571,7 @@ export default function Index() {
             </div>
 
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
-              <i className="fab fa-github text-blueGray-700 absolute text-55 -top-150-px -right-100 left-auto opacity-80"></i>
+              {/* <i className="fab fa-github text-blueGray-700 absolute text-55 -top-150-px -right-100 left-auto opacity-80"></i> */}
             </div>
           </div>
         </div>
@@ -629,12 +621,12 @@ export default function Index() {
                   Get started
                 </a>
                 <a
-                  href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
-                  target="_blank"
+                  href="mailto:jobtal?body=Hello! This is the body of my email. Thanks!" target="_blank"
                   className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                 >
-                  <i className="fab fa-github text-lg mr-1"></i>
-                  <span>Help With a Donation</span>
+                  {/* <i className="fab fa-github text-lg mr-1"></i> */}
+                  send us email
+                  {/* <span>Help With a Donation</span> */}
                 </a>
               </div>
               <div className="text-center mt-16"></div>

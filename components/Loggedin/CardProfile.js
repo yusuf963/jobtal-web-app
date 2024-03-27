@@ -1,8 +1,15 @@
-import React from "react";
-
-// components
+import React, { useEffect, useState } from "react";
 
 export default function CardProfile() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('loggedinUser') === 'undefined' || localStorage.getItem('loggedinUser') === 'null') return
+      setUser(JSON.parse(localStorage.getItem('loggedinUser')))
+    }
+  }, [])
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -23,26 +30,26 @@ export default function CardProfile() {
                   <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     22
                   </span>
-                  <span className="text-sm text-blueGray-400">Friends</span>
+                  <span className="text-sm text-blueGray-400">Job applied</span>
                 </div>
                 <div className="mr-4 p-3 text-center">
                   <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     10
                   </span>
-                  <span className="text-sm text-blueGray-400">Photos</span>
+                  <span className="text-sm text-blueGray-400">Messages</span>
                 </div>
                 <div className="lg:mr-4 p-3 text-center">
                   <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     89
                   </span>
-                  <span className="text-sm text-blueGray-400">Comments</span>
+                  <span className="text-sm text-blueGray-400">Courses</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="text-center mt-12">
             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              Jenna Stones
+              {user.firstName}{" "} {user.lastName}
             </h3>
             <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}

@@ -26,6 +26,13 @@ const useFetch = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    function getToken() {
+        if (!localStorage) return false;
+        const token = localStorage.getItem('token'); // this cause  run time error  on mobile siomulator
+        if (!token) return false;
+        return token;
+    }
+
     const getData = async (url) => {
         try {
             setLoading(true);
@@ -49,6 +56,10 @@ const useFetch = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    // 'Access-Control-Allow-Origin': '*',
+                    // 'X-Auth-Token': 'any',
+                    // Accept: 'application/json',
+                    authorization: `Bearer ${getToken()}`,
                 },
                 body: JSON.stringify(postData),
             });
@@ -70,6 +81,7 @@ const useFetch = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    authorization: `Bearer ${getToken()}`,
                 },
                 body: JSON.stringify(putData),
             });
